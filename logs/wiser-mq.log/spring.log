@@ -1,0 +1,8 @@
+2020-02-01 20:25:56.436  WARN 16852 --- [main] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5005 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2020-02-01 20:26:01.450  INFO 16852 --- [main] c.w.mqclient.MqClientApplicationTests    : Starting MqClientApplicationTests on Z-MacBook-Pro.local with PID 16852 (started by zhangxuwen in /Users/zhangxuwen/Documents/MyPrg/Intellij_Prg/wiser_mq)
+2020-02-01 20:26:01.451 DEBUG 16852 --- [main] c.w.mqclient.MqClientApplicationTests    : Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020-02-01 20:26:01.452  INFO 16852 --- [main] c.w.mqclient.MqClientApplicationTests    : No active profile set, falling back to default profiles: default
+2020-02-01 20:26:20.731  INFO 16852 --- [main] c.w.m.service.impl.ConsumeMqServiceImpl  : Consume mq start.
+2020-02-01 20:26:21.099  INFO 16852 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-01 20:26:21.399  INFO 16852 --- [main] c.w.mqclient.MqClientApplicationTests    : Started MqClientApplicationTests in 35.237 seconds (JVM running for 36.35)
+2020-02-01 20:26:21.678  INFO 16852 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
