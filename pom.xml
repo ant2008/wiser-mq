@@ -12,7 +12,7 @@
 
 	<groupId>com.wiser</groupId>
 	<artifactId>mq-client</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>mq-client</name>
 	<description>Wiser MQ Client</description>
 

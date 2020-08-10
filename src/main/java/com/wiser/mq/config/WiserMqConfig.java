@@ -22,6 +22,37 @@ public class WiserMqConfig {
 
     private String callBack;
 
+    private String eyewisdomCallBack;
+
+    private String callBackDev;
+
+    private String eyewisdomCallBackDev;
+
+
+    public String getCallBackDev() {
+        return callBackDev;
+    }
+
+    public void setCallBackDev(String callBackDev) {
+        this.callBackDev = callBackDev;
+    }
+
+    public String getEyewisdomCallBackDev() {
+        return eyewisdomCallBackDev;
+    }
+
+    public void setEyewisdomCallBackDev(String eyewisdomCallBackDev) {
+        this.eyewisdomCallBackDev = eyewisdomCallBackDev;
+    }
+
+    public String getEyewisdomCallBack() {
+        return eyewisdomCallBack;
+    }
+
+    public void setEyewisdomCallBack(String eyewisdomCallBack) {
+        this.eyewisdomCallBack = eyewisdomCallBack;
+    }
+
     public String getCallBack() {
         return callBack;
     }

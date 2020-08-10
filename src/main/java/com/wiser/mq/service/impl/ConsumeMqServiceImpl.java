@@ -1,6 +1,8 @@
 package com.wiser.mq.service.impl;
 
 import cn.hutool.core.lang.Console;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import com.aliyun.openservices.ons.api.*;
 import com.google.gson.Gson;
@@ -32,11 +34,13 @@ public class ConsumeMqServiceImpl implements ConsumeMqService {
      * 消费消息
      * @return
      * @throws Exception
+     * <p>加入对致远慧图的支持 2020-06-29 </p>
      */
     @Override
     public void consumeMq() throws Exception {
         Properties properties = null;
         Consumer consumer = null;
+
 
         try
         {
@@ -63,13 +67,14 @@ public class ConsumeMqServiceImpl implements ConsumeMqService {
                 @Override
                 public Action consume(Message message, ConsumeContext context) {
 
+                    String tmpUrl = "";
 
                     if(message != null)
                     {
                         LOG.info("Receive message. message tag is: {},message body is: {},message id:{}",
                                 message.getTag(),message.getBody(),message.getMsgID());
 
-                        LOG.debug("Send message to callback: url is {}",wiserMqConfig.getCallBack());
+
 
                         Map<String,Object> paramMap = new HashMap<>();
 
@@ -87,7 +92,41 @@ public class ConsumeMqServiceImpl implements ConsumeMqService {
                         paramMap.put("aTag",message.getTag());
                         paramMap.put("aJson",tmpJson);
 
-                        String retStr =  HttpUtil.post(wiserMqConfig.getCallBack(),paramMap);
+                        String retStr = "";
+
+                        //判断是否是正式还是开发环境。
+                        if(ObjectUtil.isNotNull(message.getTag()))
+                        {
+                            //开发
+                            if(StrUtil.endWithIgnoreCase(message.getTag(),"-DEV"))
+                            {
+                                if("Eyewisdom-Report-DEV".trim().equals(message.getTag().trim()))
+                                {
+                                    tmpUrl = wiserMqConfig.getEyewisdomCallBackDev();
+                                }else
+                                {
+                                    tmpUrl = wiserMqConfig.getCallBackDev();
+                                }
+
+                            }
+                            //正式。
+                            else
+                            {
+                                //正式环境。
+                                if("Eyewisdom-Report".trim().equals(message.getTag()))
+                                {
+                                    tmpUrl = wiserMqConfig.getEyewisdomCallBack();
+                                }else
+                                {
+                                    tmpUrl = wiserMqConfig.getCallBack();
+                                }
+
+                            }
+                        }
+
+
+                        LOG.debug("Send message to callback: url is {}",tmpUrl);
+                        retStr = HttpUtil.post(tmpUrl,paramMap);
 
                         if(retStr != null)
                         {
